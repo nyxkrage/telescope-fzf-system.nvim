@@ -11,6 +11,10 @@ else
     TARGET := libfzf.so
 endif
 
+ifeq ($(PREFIX),)
+    PREFIX := /usr/local
+endif
+
 all: build/$(TARGET)
 
 build/$(TARGET): src/fzf.c src/fzf.h
@@ -35,6 +39,12 @@ ntest:
 
 clangdhappy:
 	compiledb make
+
+install: build/$(TARGET)
+	install -d $(PREFIX)/lib/
+	install -m 644 build/$(TARGET) $(PREFIX)/lib/
+	install -d $(PREFIX)/inlucde/
+	install -m 644 src/fzf.h $(PREFIX)/include/
 
 clean:
 	$(RM) build

@@ -8,7 +8,7 @@ local library_path = (function()
     return dirname .. "../build/libfzf.so"
   end
 end)()
-local native = ffi.load(library_path)
+local native = ffi.load("libfzf.so")
 
 ffi.cdef [[
   typedef struct {} fzf_i16_t;
