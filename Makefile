@@ -40,7 +40,12 @@ ntest:
 clangdhappy:
 	compiledb make
 
-install: build/$(TARGET)
+build/fzf.pc: fzf.pc.in
+	$(shell sed 's|$$(PREFIX)|$(PREFIX)|' fzf.pc.in > $@)
+
+install: build/$(TARGET) build/fzf.pc
+	install -d $(PREFIX)/share/pkgconfig
+	install -m 644 build/fzf.pc $(PREFIX)/share/pkgconfig/
 	install -d $(PREFIX)/lib/
 	install -m 644 build/$(TARGET) $(PREFIX)/lib/
 	install -d $(PREFIX)/inlucde/

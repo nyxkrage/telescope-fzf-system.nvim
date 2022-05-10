@@ -1,0 +1,10 @@
+prefix=$(PREFIX)
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: Fzf-native
+Description: Fzf-native is a c port of fzf. It only covers the algorithm and implements few functions to support calculating the score.
+Version: 0.1
+Cflags: -I${includedir}
+Libs: -L${libdir} -lfzf
