@@ -31,7 +31,9 @@ available for telescope (as native component or as lua component).
 ## Installation
 
 To get **fzf-native** working, you need to run make at the root directory. As of
-now, we do not ship binaries.
+now, we do not ship binaries. It will by default prefer the plugin-local build of
+the library, if you have the system library installed and want to make sure that it
+gets used, replace the make command in your plug or packer entry with `make clean`.
 
 ### vim-plug
 

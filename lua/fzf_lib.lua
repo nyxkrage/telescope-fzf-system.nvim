@@ -2,13 +2,19 @@ local ffi = require "ffi"
 
 local library_path = (function()
   local dirname = string.sub(debug.getinfo(1).source, 2, #"/fzf_lib.lua" * -1)
+  local libpath = ""
   if package.config:sub(1, 1) == "\\" then
-    return dirname .. "../build/libfzf.dll"
+    libpath = dirname .. "../build/libfzf.dll"
   else
-    return dirname .. "../build/libfzf.so"
+    libpath =  dirname .. "../build/libfzf.so"
+  end
+  if libpath ~= "" then
+	  return libpath
+  else
+	  return "libfzf.so"
   end
 end)()
-local native = ffi.load("libfzf.so")
+local native = ffi.load(library_path)
 
 ffi.cdef [[
   typedef struct {} fzf_i16_t;
